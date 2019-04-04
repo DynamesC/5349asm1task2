@@ -81,16 +81,16 @@ def mergeInfoCombiner(accumulatedInfo1, accumulatedInfo2):
     return(smallestPair1[0], smallestPair2[0], smallestPair1[1], smallestPair1[2], smallestPair2[1], smallestPair2[2], smallestPair1[3])
 
 def mapResult(line):
-    key, value = line
-    date1, date2, date1_like, date1_dislike, date2_like, date2_dislike, category = value
+    key, accumulatedInfo = line
+    date1, date2, date1_like, date1_dislike, date2_like, date2_dislike, category = accumulatedInfo
 
     video_id = key.split("|")[0]
     country = key.split("|")[1]
 
-    if(video_id == "video_id"):
-        return
-
     value = (date2_dislike - date1_dislike) - (date2_like - date1_like)
+
+    if(video_id == "video_id"):
+        return (video_id, "test|test|test")
 
     return (video_id, "{}|{}|{}".format(value, category, country))
 
