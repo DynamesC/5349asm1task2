@@ -82,7 +82,7 @@ def mergeInfoCombiner(accumulatedInfo1, accumulatedInfo2):
 
 def mapResult(line):
     key, value = line
-    date1, date2, date1_like, date1_dislike, date2_like, date2_dislike, category = accumulatedInfo
+    date1, date2, date1_like, date1_dislike, date2_like, date2_dislike, category = value
 
     video_id = key.split("|")[0]
     country = key.split("|")[1]
