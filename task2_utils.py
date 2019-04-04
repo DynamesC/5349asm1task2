@@ -4,7 +4,7 @@ def extractVideoInfo(record):
     parts = record.strip().split(",")
 
     if len(record) != 12 or parts[0] == "video_id":
-        return 
+        return
 
     video_id = parts[0]
     country = parts[11]
@@ -75,7 +75,7 @@ def mapResult(line):
 
     value = (date2_dislike - date1_dislike) - (date2_like - date1_like)
 
-    return (video_id, "{}|{}|{}".format(value, category, country))
+    return (video_id, value, category, country)
 
 # """
 # This module includes a few functions used in computing average rating per genre
