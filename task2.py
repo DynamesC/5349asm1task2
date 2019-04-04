@@ -109,7 +109,7 @@ if __name__ == "__main__":
 
     video_infos = video_data.map(extractVideoInfo)
     result = video_infos.aggregateByKey((datetime.strptime('9999.09.09' , '%Y.%d.%m'), datetime.strptime('9999.09.09' , '%Y.%d.%m'), 0, 0, 0, 0, "Unknown"), mergeInfo, mergeInfoCombiner, 1 ).map(mapResult)
-    final = sc.parallelize(result.sortBy(lambda r: r[1], False).filter(lambda r: r[1] < 366557).take(10))
+    final = sc.parallelize(result.sortBy(lambda r: r[1], False).filter(lambda r: r[1] < 334594).take(10))
     final.saveAsTextFile(output_path)
     final.foreach(print)
     # test_record = "SbOwzAl9ZfQ,17.14.11,24,Entertainment,2017-11-13T06:06:22.000Z,310130,4182,361,1836,False,False,MX\n"
