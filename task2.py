@@ -37,7 +37,7 @@ def mergeInfo(accumulatedInfo, currentInfo):
     if len(currentInfoParts) != 4:
         return accumulatedInfo
 
-    currentInfoDate = datetime.strptime(currentInfoParts[0] , '%Y.%m.%d')
+    currentInfoDate = datetime.strptime(currentInfoParts[0] , '%Y.%d.%m')
     currentInfoCategory = currentInfoParts[3]
 
     try:
@@ -108,7 +108,7 @@ if __name__ == "__main__":
     video_data = sc.textFile(input_path + "AllVideos_short.csv")
 
     video_infos = video_data.map(extractVideoInfo)
-    result = video_infos.aggregateByKey((datetime.strptime('9999.09.09' , '%Y.%m.%d'), datetime.strptime('9999.09.09' , '%Y.%m.%d'), 0, 0, 0, 0, "Unknown"), mergeInfo, mergeInfoCombiner, 1 ).map(mapResult)
+    result = video_infos.aggregateByKey((datetime.strptime('9999.09.09' , '%Y.%d.%m'), datetime.strptime('9999.09.09' , '%Y.%d.%m'), 0, 0, 0, 0, "Unknown"), mergeInfo, mergeInfoCombiner, 1 ).map(mapResult)
     result.saveAsTextFile(output_path)
 
 
