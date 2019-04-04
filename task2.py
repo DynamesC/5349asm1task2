@@ -6,7 +6,7 @@
 #   --input input-path
 #   --output outputfile
 
-# from pyspark import SparkContext
+from pyspark import SparkContext
 from task2_utils import *
 from datetime import datetime
 import argparse
