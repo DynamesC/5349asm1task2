@@ -6,7 +6,7 @@
 #   --input input-path
 #   --output outputfile
 
-from pyspark import SparkContext
+# from pyspark import SparkContext
 # from task2_utils import *
 from datetime import datetime
 import argparse
@@ -73,7 +73,7 @@ def mergeInfoCombiner(accumulatedInfo1, accumulatedInfo2):
     pair4 = (date22, date22_like, date22_dislike, category2)
 
     pairList = [pair1, pair2, pair3, pair4]
-    pairList = pairList.sort(key=lambda tup: tup[0])
+    pairList.sort(key=lambda tup: tup[0])
 
     smallestPair1 = pairList[0]
     smallestPair2 = pairList[1]
@@ -108,10 +108,24 @@ if __name__ == "__main__":
     video_data = sc.textFile(input_path + "AllVideos_short.csv")
 
     video_infos = video_data.map(extractVideoInfo)
-    result = video_infos.reduceByKey((datetime.strptime('9999.09.09' , '%Y.%d.%m'), datetime.strptime('9999.09.09' , '%Y.%d.%m'), 0, 0, 0, 0, "Unknown"), mergeInfo,  1 ).map(mapResult)
+    result = video_infos.aggregateByKey((datetime.strptime('9999.09.09' , '%Y.%d.%m'), datetime.strptime('9999.09.09' , '%Y.%d.%m'), 0, 0, 0, 0, "Unknown"), mergeInfo, mergeInfoCombiner, 1 ).map(mapResult)
     final = sc.parallelize(result.sortBy(lambda r: r[1], False).take(10))
     final.saveAsTextFile(output_path)
     final.foreach(print)
+    # test_record = "SbOwzAl9ZfQ,17.14.11,24,Entertainment,2017-11-13T06:06:22.000Z,310130,4182,361,1836,False,False,MX\n"
+    # test_extracted_record = extractVideoInfo(test_record)
+    # print(test_extracted_record)
+    # test_tuple = (datetime.strptime('9999.09.09' , '%Y.%d.%m'), datetime.strptime('9999.09.09' , '%Y.%d.%m'), 0, 0, 0, 0, "Unknown")
+    # tuple1 = mergeInfo(test_tuple, test_extracted_record[1])
+    # print(tuple1)
+    # tuple2 = mergeInfo(tuple1, "17.14.12|1|1|Hi")
+    # print(tuple2)
+    # tuple3 = mergeInfo(tuple2, "17.14.10|2|2|HO")
+    # print(tuple3)
+    # test_combine_tuple = (datetime.strptime('2017.09.11' , '%Y.%d.%m'), datetime.strptime('2017.10.11' , '%Y.%d.%m'), 4, 3, 9, 6, "Unknown")
+    # test_combined_tuple1 = mergeInfoCombiner(tuple3, test_combine_tuple)
+    # print(test_combined_tuple1)
+    # print(mapResult(("asdf|USA", test_combined_tuple1)))
 
 
 
