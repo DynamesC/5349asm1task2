@@ -37,7 +37,7 @@ def mergeInfo(accumulatedInfo, currentInfo):
     if len(currentInfoParts) != 4:
         return accumulatedInfo
 
-    currentInfoDate = datetime.strptime(currentInfoParts[0] , '%Y.%d.%m')
+    currentInfoDate = datetime.strptime("20"+currentInfoParts[0] , '%Y.%d.%m')
     currentInfoCategory = currentInfoParts[3]
 
     try:
