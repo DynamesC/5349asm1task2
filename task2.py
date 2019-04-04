@@ -89,7 +89,7 @@ def mapResult(line):
 
     value = (date2_dislike - date1_dislike) - (date2_like - date1_like)
 
-    if (date1_like == 0 and date1_dislike == 0):
+    if (date2_like == 0 and date2_dislike == 0):
         value = 0
 
     if(video_id == "video_id" ):
