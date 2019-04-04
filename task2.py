@@ -108,7 +108,7 @@ if __name__ == "__main__":
     video_data = sc.textFile(input_path + "AllVideos_short.csv")
 
     video_infos = video_data.map(extractVideoInfo)
-    result = video_infos.aggregateByKey((datetime.strptime('9999.09.09' , '%Y.%d.%m'), datetime.strptime('9999.09.09' , '%Y.%d.%m'), 0, 0, 0, 0, "Unknown"), mergeInfo, mergeInfoCombiner, 1 ).map(mapResult).sortBy(_._2)
+    result = video_infos.aggregateByKey((datetime.strptime('9999.09.09' , '%Y.%d.%m'), datetime.strptime('9999.09.09' , '%Y.%d.%m'), 0, 0, 0, 0, "Unknown"), mergeInfo, mergeInfoCombiner, 1 ).map(mapResult).sortBy(_._2, false)
     result.take(10).saveAsTextFile(output_path)
 
 
