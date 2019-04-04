@@ -15,7 +15,7 @@ def extractVideoInfo(record):
     parts = record.strip().split(",")
 
     if len(record) != 12 or parts[0] == "video_id":
-        return
+        return("video_id|country", None)
 
     video_id = parts[0]
     country = parts[11]
@@ -28,6 +28,9 @@ def extractVideoInfo(record):
 
 def mergeInfo(accumulatedInfo, currentInfo):
     date1, date2, date1_like, date1_dislike, date2_like, date2_dislike, category = accumulatedInfo
+
+    if(currentInfo is None):
+        return accumulatedInfo
 
     currentInfoParts = currentInfo.split("|")
 
@@ -83,6 +86,9 @@ def mapResult(line):
 
     video_id = key.split("|")[0]
     country = key.split("|")[1]
+
+    if(video_id == "video_id"):
+        return
 
     value = (date2_dislike - date1_dislike) - (date2_like - date1_like)
 
