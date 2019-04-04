@@ -34,7 +34,7 @@ def mergeInfo(accumulatedInfo, currentInfo):
 
     currentInfoParts = currentInfo.split("|")
 
-    if len(currentInfoParts != 4):
+    if len(currentInfoParts) != 4:
         return accumulatedInfo
 
     currentInfoDate = datetime.strptime(currentInfoParts[0] , '%Y-%m-%d')
