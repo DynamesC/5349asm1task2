@@ -14,7 +14,7 @@ import argparse
 def extractVideoInfo(record):
     parts = record.strip().split(",")
 
-    if len(record) != 12 or parts[0] == "video_id":
+    if len(parts) != 12 or parts[0] == "video_id":
         return("video_id|country", None)
 
     video_id = parts[0]
