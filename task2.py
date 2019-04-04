@@ -90,7 +90,7 @@ def mapResult(line):
     value = (date2_dislike - date1_dislike) - (date2_like - date1_like)
 
     if(video_id == "video_id"):
-        return (video_id, 999999, "category", "country")
+        return (video_id, 9999999, "category", "country")
 
     return (video_id, value, category, country)
 
@@ -110,8 +110,8 @@ if __name__ == "__main__":
     video_infos = video_data.map(extractVideoInfo)
     result = video_infos.aggregateByKey((datetime.strptime('9999.09.09' , '%Y.%d.%m'), datetime.strptime('9999.09.09' , '%Y.%d.%m'), 0, 0, 0, 0, "Unknown"), mergeInfo, mergeInfoCombiner, 1 ).map(mapResult)
     final = sc.parallelize(result.sortBy(lambda r: r[1], False).take(10))
-    final.foreach(print)
     final.saveAsTextFile(output_path)
+    final.foreach(print)
 
 
 
