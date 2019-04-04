@@ -73,7 +73,7 @@ def mergeInfoCombiner(accumulatedInfo1, accumulatedInfo2):
     pair4 = (date22, date22_like, date22_dislike, category2)
 
     pairList = [pair1, pair2, pair3, pair4]
-    pairList.sort(key=lambda tup: tup[0])
+    pairList = pairList.sort(key=lambda tup: tup[0])
 
     smallestPair1 = pairList[0]
     smallestPair2 = pairList[1]
