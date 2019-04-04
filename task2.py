@@ -92,7 +92,7 @@ def mapResult(line):
     if(video_id == "video_id"):
         return (video_id, "test|test|test")
 
-    return (video_id, "{}|{}|{}".format(value, category, country))
+    return (video_id, value, category, country)
 
 
 if __name__ == "__main__":
