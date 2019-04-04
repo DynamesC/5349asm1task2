@@ -4,7 +4,7 @@ def extractVideoInfo(record):
     parts = record.strip().split(",")
 
     if len(record) != 12 or parts[0] == "video_id":
-        continue
+        return 
 
     video_id = parts[0]
     country = parts[11]
