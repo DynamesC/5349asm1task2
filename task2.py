@@ -133,7 +133,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     input_path = args.input
     output_path = args.output
-    video_data = sc.textFile(input_path + "AllVideos_short.csv")
+    video_data = sc.textFile(input_path)
     video_infos = video_data.map(extractVideoInfo)
     result = video_infos.aggregateByKey((datetime.strptime('9999.09.09' , '%Y.%d.%m'), datetime.strptime('9999.09.09' , '%Y.%d.%m'), 0, 0, 0, 0, "Unknown"), mergeInfo, mergeInfoCombiner, 1 ).map(mapResult)
     final = sc.parallelize(result.sortBy(lambda r: r[1], False).take(10))
