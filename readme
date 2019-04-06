@@ -1,0 +1,7 @@
+First ensure the inputfile is in the HDFS
+
+To run task1, use command "./task1.sh inputfile outputfile"
+Replace the inputfile and outputfile with your own file names
+
+To run task2. use command "./task2.sh --input inputfile --output outputfile"
+Replace the inputfile and outputfile with your own file names
