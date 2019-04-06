@@ -8,6 +8,7 @@
 
 from pyspark import SparkContext
 from datetime import datetime
+import spark.implicits._
 import argparse
 
 """
