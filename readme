@@ -2,6 +2,8 @@ First ensure the inputfile is in the HDFS
 
 To run task1, use command "./task1.sh inputfile outputfile"
 Replace the inputfile and outputfile with your own file names
+(please refer directly to the csv file, not the directory contains csv file)
 
-To run task2. use command "./task2.sh --input inputfile --output outputfile"
+To run task2. use command "./task2.sh inputfile outputfile"
 Replace the inputfile and outputfile with your own file names
+(please refer directly to the csv file, not the directory contains csv file)
