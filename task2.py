@@ -125,11 +125,6 @@ def mapResult(line):
 
 if __name__ == "__main__":
     sc = SparkContext(appName="Controversial Trending Videos Identification")
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--input", help="the input path",
-                        default='')
-    parser.add_argument("--output", help="the output path",
-                        default='task2_output')
     args = parser.parse_args()
     input_path = args.input
     output_path = args.output
