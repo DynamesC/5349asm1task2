@@ -7,6 +7,4 @@ fi
 
 spark-submit  \
 --master local[2] \
-task2.py
---input $1
---output $2
+task2.py --input $1 --output $2
